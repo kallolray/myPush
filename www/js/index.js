@@ -110,3 +110,5 @@ function showStatus(){
     //window.alert(pushApp.statusData);
     document.getElementById("status").innerText(pushApp.statusData)
 }
+
+document.addEventListener('deviceready', pushApp.onDeviceReady, false);
