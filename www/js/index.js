@@ -105,7 +105,8 @@ var pushApp = {
        });
     }
 };
-document.addEventListener('deviceready', pushApp.onDeviceReady, false);
+document.addEventListener('deviceready', ()=>{pushApp.onDeviceReady();}, false);
+document.getElementById("btn1").addEventListener("click",()=>{showStatus();},false);
 
 function showStatus(){
     //window.alert(pushApp.statusData);
