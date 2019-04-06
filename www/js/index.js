@@ -108,7 +108,10 @@ var pushApp = {
 
 function showStatus(){
     //window.alert(pushApp.statusData);
-    document.getElementById("status").innerText(pushApp.statusData)
+    if(pushApp.statusData == "")
+        document.getElementById("status").innerText("NO DATA");
+    else
+        document.getElementById("status").innerText(pushApp.statusData);
 }
 
 document.addEventListener('deviceready', pushApp.onDeviceReady, false);
