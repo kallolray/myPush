@@ -107,6 +107,6 @@ var pushApp = {
 };
 
 function showStatus(){
-    window.alert(pushApp.statusData);
+    //window.alert(pushApp.statusData);
     document.getElementById("status").innerText(pushApp.statusData)
 }
