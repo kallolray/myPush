@@ -1,8 +1,8 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "helloworld",
-  "short_name": "helloworld",
+  "name": "TMOS Push",
+  "short_name": "TMOS Push",
   "version": "com.phonegap.helloworld",
   "description": "Push sample application that receives push notifications.",
   "author": "PhoneGap Team",

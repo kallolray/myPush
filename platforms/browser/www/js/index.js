@@ -17,9 +17,15 @@
  * under the License.
  */
 var app = {
+    status : {},
     // Application Constructor
     initialize: function() {
+        this.status = document.getElementById("status");
         this.bindEvents();
+    },
+    addStatus: function(text){
+        this.status.appendChild(document.createTextNode(text));
+        this.status.appendChild(document.createElement("br"));
     },
     // Bind Event Listeners
     //
@@ -35,10 +41,13 @@ var app = {
     onDeviceReady: function() {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
+        app.addStatus("Received Device Ready Event");
+        app.addStatus("calling setup push");
         app.setupPush();
     },
     setupPush: function() {
         console.log('calling push init');
+        app.addStatus("calling push init");
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
@@ -52,11 +61,11 @@ var app = {
             "windows": {}
         });
         console.log('after init');
+        app.addStatus("After Init");
 
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
-
-            document.getElementById("content").innerHTML(data.registrationId);
+            app.addStatus('registration event: ' + data.registrationId);
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
@@ -74,10 +83,12 @@ var app = {
 
         push.on('error', function(e) {
             console.log("push error = " + e.message);
+            app.addStatus("push error = " + e.message);
         });
 
         push.on('notification', function(data) {
             console.log('notification event');
+            app.addStatus("notification event");
             navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
