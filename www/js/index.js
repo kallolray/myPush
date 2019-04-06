@@ -17,15 +17,15 @@
  * under the License.
  */
 
-var statusData = "";
+//var statusData = "";
 var pushApp = {
-    //statusData : "",
+    statusData : "",
     // Application Constructor
     // initialize: function() {
     //     this.bindEvents();
     // },
     addStatus: function(text){
-        statusData += (text + "\n");
+        this.statusData += (text + "\n");
     },
 
     // Bind Event Listeners
@@ -107,8 +107,8 @@ document.getElementById("btn1").addEventListener("click",()=>{showStatus();},fal
 
 function showStatus(){
     //window.alert(pushApp.statusData);
-    if(statusData == "")
+    if(pushApp.statusData == "")
         document.getElementById("status").value = "NO DATA";
     else
-        document.getElementById("status").value = statusData;
+        document.getElementById("status").value = pushApp.statusData;
 }
