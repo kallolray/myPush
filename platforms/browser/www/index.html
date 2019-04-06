@@ -38,23 +38,21 @@
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
     <title>Hello World</title>
 </head>
 
 <body>
     <div class="app">
         <h1>PhoneGap</h1>
-        <div id="registration" class="blink">
-            <p class="event waiting">Requesting Registration ID</p>
-            <p class="event received">Registered</p>
-        </div>
-        <div id="status"></div>
+        <button onclick="showStatus();">Get Status</button><br>
+        <div id="status"></div><br>
+        <textarea rows="2" cols="40" id="regID"></textarea>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-        app.initialize();
+        //pushApp.initialize();
     </script>
 </body>
 

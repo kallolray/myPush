@@ -17,6 +17,7 @@
  * under the License.
  */
 
+document.addEventListener('deviceready', pushApp.onDeviceReady, false);
 
 var pushApp = {
     statusData : "",
@@ -113,5 +114,3 @@ function showStatus(){
     else
         document.getElementById("status").innerText(pushApp.statusData);
 }
-
-document.addEventListener('deviceready', pushApp.onDeviceReady, false);
