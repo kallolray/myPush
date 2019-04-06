@@ -25,16 +25,12 @@ var pushApp = {
         this.bindEvents();
     },
     addStatus: function(text){
-        //pushApp.statusData += (text + "<br>");
-        var ds = document.getElementById("status");
-        ds.appendChild(document.createTextNode(text));
-        ds.appendChild(document.createElement("br"));
+        pushApp.statusData += (text + "<br>");
+        // var ds = document.getElementById("status");
+        // ds.appendChild(document.createTextNode(text));
+        // ds.appendChild(document.createElement("br"));
     },
 
-    showStatusData: function(){
-        //navigator.notification.alert(pushApp.statusData,null);
-        document.getElementById("status").innerHTML(pushApp.statusData);
-    },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
@@ -52,12 +48,10 @@ var pushApp = {
         pushApp.addStatus("Received Device Ready Event");
         pushApp.addStatus("calling setup push");
         pushApp.setupPush();
-        //pushApp.showStatusData();
     },
     setupPush: function() {
         console.log('calling push init');
         pushApp.addStatus("calling push init"); 
-        //pushApp.showStatusData();
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
@@ -72,13 +66,11 @@ var pushApp = {
         });
         console.log('after init');
         pushApp.addStatus("After Init"); 
-        //pushApp.showStatusData();
 
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
             pushApp.addStatus('registration event: ' + data.registrationId);
             document.getElementById("regID").value = data.registrationId;
-            //pushApp.showStatusData();
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
@@ -86,12 +78,12 @@ var pushApp = {
                 // Post registrationId to your pushApp server as the value has changed
             }
 
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
+            // var parentElement = document.getElementById('registration');
+            // var listeningElement = parentElement.querySelector('.waiting');
+            // var receivedElement = parentElement.querySelector('.received');
 
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
+            // listeningElement.setAttribute('style', 'display:none;');
+            // receivedElement.setAttribute('style', 'display:block;');
 
             
         });
@@ -99,13 +91,11 @@ var pushApp = {
         push.on('error', function(e) {
             console.log("push error = " + e.message);
             pushApp.addStatus("push error = " + e.message); 
-            //pushApp.showStatusData();
         });
 
         push.on('notification', function(data) {
             console.log('notification event');
             pushApp.addStatus("notification event"); 
-            //pushApp.showStatusData();
             navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
@@ -115,3 +105,8 @@ var pushApp = {
        });
     }
 };
+
+function showStatus(){
+    window.alert(pushApp.statusData);
+    document.getElementById("status").innerText(pushApp.statusData)
+}
