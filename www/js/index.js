@@ -17,8 +17,7 @@
  * under the License.
  */
 
-document.addEventListener('deviceready', pushApp.onDeviceReady, false);
-
+var statusData = "";
 var pushApp = {
     statusData : "",
     // Application Constructor
@@ -26,7 +25,7 @@ var pushApp = {
         this.bindEvents();
     },
     addStatus: function(text){
-        this.statusData += (text + "<br>");
+        statusData += (text + "<br>");
         // var ds = document.getElementById("status");
         // ds.appendChild(document.createTextNode(text));
         // ds.appendChild(document.createElement("br"));
@@ -106,11 +105,12 @@ var pushApp = {
        });
     }
 };
+document.addEventListener('deviceready', pushApp.onDeviceReady, false);
 
 function showStatus(){
     //window.alert(pushApp.statusData);
-    if(pushApp.statusData == "")
+    if(statusData == "")
         document.getElementById("status").innerText("NO DATA");
     else
-        document.getElementById("status").innerText(pushApp.statusData);
+        document.getElementById("status").innerText(statusData);
 }
