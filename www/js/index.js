@@ -56,7 +56,7 @@ var pushApp = {
     },
     setupPush: function() {
         console.log('calling push init');
-        tpushApphis.addStatus("calling push init"); pushApp.showStatusData();
+        pushApp.addStatus("calling push init"); pushApp.showStatusData();
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
