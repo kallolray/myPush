@@ -16,15 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var statusData = [];
 var pushApp = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
     },
     addStatus: function(text){
-        var ds = document.getElementById("status");
-        ds.appendChild(document.createTextNode(text));
-        ds.appendChild(document.createElement("br"));
+        statusData.push(text);
+        //var ds = document.getElementById("status");
+        //ds.appendChild(document.createTextNode(text));
+        //ds.appendChild(document.createElement("br"));
     },
     // Bind Event Listeners
     //
@@ -78,6 +81,8 @@ var pushApp = {
 
             listeningElement.setAttribute('style', 'display:none;');
             receivedElement.setAttribute('style', 'display:block;');
+
+            document.getElementById("status").innerHTML(statusData.join("<br/>"));
         });
 
         push.on('error', function(e) {
