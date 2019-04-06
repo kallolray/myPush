@@ -19,13 +19,13 @@
 
 var statusData = "";
 var pushApp = {
-    statusData : "",
+    //statusData : "",
     // Application Constructor
     initialize: function() {
         this.bindEvents();
     },
     addStatus: function(text){
-        statusData += (text + "<br>");
+        statusData += (text + "\n");
         // var ds = document.getElementById("status");
         // ds.appendChild(document.createTextNode(text));
         // ds.appendChild(document.createElement("br"));
@@ -111,7 +111,7 @@ document.getElementById("btn1").addEventListener("click",()=>{showStatus();},fal
 function showStatus(){
     //window.alert(pushApp.statusData);
     if(statusData == "")
-        document.getElementById("status").innerText("NO DATA");
+        document.getElementById("status").value = "NO DATA";
     else
-        document.getElementById("status").innerText(statusData);
+        document.getElementById("status").value = statusData;
 }
