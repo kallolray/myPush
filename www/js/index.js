@@ -17,15 +17,14 @@
  * under the License.
  */
 var app = {
-    status : {},
     // Application Constructor
     initialize: function() {
-        this.status = document.getElementById("status");
         this.bindEvents();
     },
     addStatus: function(text){
-        this.status.appendChild(document.createTextNode(text));
-        this.status.appendChild(document.createElement("br"));
+        var ds = document.getElementById("status");
+        ds.appendChild(document.createTextNode(text));
+        ds.appendChild(document.createElement("br"));
     },
     // Bind Event Listeners
     //
