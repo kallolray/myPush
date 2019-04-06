@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+var pushApp = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -36,17 +36,17 @@ var app = {
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
+    // function, we must explicitly call 'pushApp.receivedEvent(...);'
     onDeviceReady: function() {
         console.log('Received Device Ready Event');
         console.log('calling setup push');
-        app.addStatus("Received Device Ready Event");
-        app.addStatus("calling setup push");
-        app.setupPush();
+        pushApp.addStatus("Received Device Ready Event");
+        pushApp.addStatus("calling setup push");
+        pushApp.setupPush();
     },
     setupPush: function() {
         console.log('calling push init');
-        app.addStatus("calling push init");
+        pushApp.addStatus("calling push init");
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
@@ -60,16 +60,16 @@ var app = {
             "windows": {}
         });
         console.log('after init');
-        app.addStatus("After Init");
+        pushApp.addStatus("After Init");
 
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
-            app.addStatus('registration event: ' + data.registrationId);
+            pushApp.addStatus('registration event: ' + data.registrationId);
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
                 localStorage.setItem('registrationId', data.registrationId);
-                // Post registrationId to your app server as the value has changed
+                // Post registrationId to your pushApp server as the value has changed
             }
 
             var parentElement = document.getElementById('registration');
@@ -82,12 +82,12 @@ var app = {
 
         push.on('error', function(e) {
             console.log("push error = " + e.message);
-            app.addStatus("push error = " + e.message);
+            pushApp.addStatus("push error = " + e.message);
         });
 
         push.on('notification', function(data) {
             console.log('notification event');
-            app.addStatus("notification event");
+            pushApp.addStatus("notification event");
             navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
