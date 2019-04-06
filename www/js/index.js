@@ -19,11 +19,10 @@
 
 
 var pushApp = {
-    
+    statusData : [],
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        this.statusData = [];
     },
     addStatus: function(text){
         pushApp.statusData.push(text);
