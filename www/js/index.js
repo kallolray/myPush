@@ -25,14 +25,15 @@ var pushApp = {
         this.bindEvents();
     },
     addStatus: function(text){
-        pushApp.statusData.push(text);
+        this.statusData.push(text);
         //var ds = document.getElementById("status");
         //ds.appendChild(document.createTextNode(text));
         //ds.appendChild(document.createElement("br"));
     },
 
     showStatusData: function(){
-        document.getElementById("status").innerHTML(pushApp.statusData.join("<br/>"));
+        navigator.notification.alert(this.statusData.join("<br/>"),null);
+        //document.getElementById("status").innerHTML(this.statusData.join("<br/>"));
     },
     // Bind Event Listeners
     //
@@ -55,7 +56,7 @@ var pushApp = {
     },
     setupPush: function() {
         console.log('calling push init');
-        pushApp.addStatus("calling push init"); showStatusData();
+        this.addStatus("calling push init"); showStatusData();
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
@@ -69,11 +70,11 @@ var pushApp = {
             "windows": {}
         });
         console.log('after init');
-        pushApp.addStatus("After Init"); showStatusData();
+        this.addStatus("After Init"); showStatusData();
 
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
-            pushApp.addStatus('registration event: ' + data.registrationId);
+            this.addStatus('registration event: ' + data.registrationId);
             showStatusData();
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
