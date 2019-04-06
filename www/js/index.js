@@ -25,7 +25,7 @@ var pushApp = {
         this.bindEvents();
     },
     addStatus: function(text){
-        pushApp.statusData += (text + "<br>");
+        this.statusData += (text + "<br>");
         // var ds = document.getElementById("status");
         // ds.appendChild(document.createTextNode(text));
         // ds.appendChild(document.createElement("br"));
