@@ -19,21 +19,21 @@
 
 
 var pushApp = {
-    statusData : [],
+    statusData : "",
     // Application Constructor
     initialize: function() {
         this.bindEvents();
     },
     addStatus: function(text){
-        this.statusData.push(text);
+        this.statusData += (text + "<br>");
         //var ds = document.getElementById("status");
         //ds.appendChild(document.createTextNode(text));
         //ds.appendChild(document.createElement("br"));
     },
 
     showStatusData: function(){
-        navigator.notification.alert(this.statusData.join("<br/>"),null);
-        //document.getElementById("status").innerHTML(this.statusData.join("<br/>"));
+        navigator.notification.alert(this.statusData,null);
+        document.getElementById("status").innerHTML(this.statusData);
     },
     // Bind Event Listeners
     //
