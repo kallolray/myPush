@@ -77,6 +77,7 @@ var pushApp = {
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
             pushApp.addStatus('registration event: ' + data.registrationId);
+            document.getElementById("regID").value = data.registrationId;
             //pushApp.showStatusData();
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
