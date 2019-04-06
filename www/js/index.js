@@ -18,6 +18,9 @@
  */
 
 //var statusData = "";
+document.addEventListener('deviceready', ()=>{pushApp.setupPush();}, false);
+document.getElementById("btn1").addEventListener("click",()=>{showStatus();},false);
+
 var pushApp = {
     statusData : "",
     // Application Constructor
@@ -102,8 +105,6 @@ var pushApp = {
        });
     }
 };
-document.addEventListener('deviceready', ()=>{pushApp.setupPush();}, false);
-document.getElementById("btn1").addEventListener("click",()=>{showStatus();},false);
 
 function showStatus(){
     //window.alert(pushApp.statusData);
