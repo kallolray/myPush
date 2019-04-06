@@ -25,14 +25,14 @@ var pushApp = {
         this.bindEvents();
     },
     addStatus: function(text){
-        pushApp.statusData += (text + "<br>");
-        //var ds = document.getElementById("status");
-        //ds.appendChild(document.createTextNode(text));
-        //ds.appendChild(document.createElement("br"));
+        //pushApp.statusData += (text + "<br>");
+        var ds = document.getElementById("status");
+        ds.appendChild(document.createTextNode(text));
+        ds.appendChild(document.createElement("br"));
     },
 
     showStatusData: function(){
-        navigator.notification.alert(pushApp.statusData,null);
+        //navigator.notification.alert(pushApp.statusData,null);
         document.getElementById("status").innerHTML(pushApp.statusData);
     },
     // Bind Event Listeners
@@ -52,11 +52,12 @@ var pushApp = {
         pushApp.addStatus("Received Device Ready Event");
         pushApp.addStatus("calling setup push");
         pushApp.setupPush();
-        pushApp.showStatusData();
+        //pushApp.showStatusData();
     },
     setupPush: function() {
         console.log('calling push init');
-        pushApp.addStatus("calling push init"); pushApp.showStatusData();
+        pushApp.addStatus("calling push init"); 
+        //pushApp.showStatusData();
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
@@ -70,12 +71,13 @@ var pushApp = {
             "windows": {}
         });
         console.log('after init');
-        pushApp.addStatus("After Init"); pushApp.showStatusData();
+        pushApp.addStatus("After Init"); 
+        //pushApp.showStatusData();
 
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
             pushApp.addStatus('registration event: ' + data.registrationId);
-            pushApp.showStatusData();
+            //pushApp.showStatusData();
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
@@ -95,12 +97,14 @@ var pushApp = {
 
         push.on('error', function(e) {
             console.log("push error = " + e.message);
-            pushApp.addStatus("push error = " + e.message); pushApp.showStatusData();
+            pushApp.addStatus("push error = " + e.message); 
+            //pushApp.showStatusData();
         });
 
         push.on('notification', function(data) {
             console.log('notification event');
-            pushApp.addStatus("notification event"); pushApp.showStatusData();
+            pushApp.addStatus("notification event"); 
+            //pushApp.showStatusData();
             navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
