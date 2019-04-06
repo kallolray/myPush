@@ -21,34 +21,31 @@ var statusData = "";
 var pushApp = {
     //statusData : "",
     // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
+    // initialize: function() {
+    //     this.bindEvents();
+    // },
     addStatus: function(text){
         statusData += (text + "\n");
-        // var ds = document.getElementById("status");
-        // ds.appendChild(document.createTextNode(text));
-        // ds.appendChild(document.createElement("br"));
     },
 
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
+    // bindEvents: function() {
+    //     document.addEventListener('deviceready', this.onDeviceReady, false);
+    // },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'pushApp.receivedEvent(...);'
-    onDeviceReady: function() {
-        console.log('Received Device Ready Event');
-        console.log('calling setup push');
-        pushApp.addStatus("Received Device Ready Event");
-        pushApp.addStatus("calling setup push");
-        pushApp.setupPush();
-    },
+    // onDeviceReady: function() {
+    //     console.log('Received Device Ready Event');
+    //     console.log('calling setup push');
+    //     pushApp.addStatus("Received Device Ready Event");
+    //     pushApp.addStatus("calling setup push");
+    //     pushApp.setupPush();
+    // },
     setupPush: function() {
         console.log('calling push init');
         pushApp.addStatus("calling push init"); 
@@ -105,7 +102,7 @@ var pushApp = {
        });
     }
 };
-document.addEventListener('deviceready', ()=>{pushApp.onDeviceReady();}, false);
+document.addEventListener('deviceready', ()=>{pushApp.setupPush();}, false);
 document.getElementById("btn1").addEventListener("click",()=>{showStatus();},false);
 
 function showStatus(){
