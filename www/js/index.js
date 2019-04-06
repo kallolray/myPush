@@ -17,17 +17,23 @@
  * under the License.
  */
 
-var statusData = [];
+
 var pushApp = {
+    
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        this.statusData = [];
     },
     addStatus: function(text){
-        statusData.push(text);
+        pushApp.statusData.push(text);
         //var ds = document.getElementById("status");
         //ds.appendChild(document.createTextNode(text));
         //ds.appendChild(document.createElement("br"));
+    },
+
+    showStatusData: function(){
+        document.getElementById("status").innerHTML(pushApp.statusData.join("<br/>"));
     },
     // Bind Event Listeners
     //
@@ -46,10 +52,11 @@ var pushApp = {
         pushApp.addStatus("Received Device Ready Event");
         pushApp.addStatus("calling setup push");
         pushApp.setupPush();
+        showStatusData();
     },
     setupPush: function() {
         console.log('calling push init');
-        pushApp.addStatus("calling push init");
+        pushApp.addStatus("calling push init"); showStatusData();
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
@@ -63,11 +70,12 @@ var pushApp = {
             "windows": {}
         });
         console.log('after init');
-        pushApp.addStatus("After Init");
+        pushApp.addStatus("After Init"); showStatusData();
 
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
             pushApp.addStatus('registration event: ' + data.registrationId);
+            showStatusData();
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
@@ -82,17 +90,17 @@ var pushApp = {
             listeningElement.setAttribute('style', 'display:none;');
             receivedElement.setAttribute('style', 'display:block;');
 
-            document.getElementById("status").innerHTML(statusData.join("<br/>"));
+            
         });
 
         push.on('error', function(e) {
             console.log("push error = " + e.message);
-            pushApp.addStatus("push error = " + e.message);
+            pushApp.addStatus("push error = " + e.message); showStatusData();
         });
 
         push.on('notification', function(data) {
             console.log('notification event');
-            pushApp.addStatus("notification event");
+            pushApp.addStatus("notification event"); showStatusData();
             navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
