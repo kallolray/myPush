@@ -25,15 +25,15 @@ var pushApp = {
         this.bindEvents();
     },
     addStatus: function(text){
-        this.statusData += (text + "<br>");
+        pushApp.statusData += (text + "<br>");
         //var ds = document.getElementById("status");
         //ds.appendChild(document.createTextNode(text));
         //ds.appendChild(document.createElement("br"));
     },
 
     showStatusData: function(){
-        navigator.notification.alert(this.statusData,null);
-        document.getElementById("status").innerHTML(this.statusData);
+        navigator.notification.alert(pushApp.statusData,null);
+        document.getElementById("status").innerHTML(pushApp.statusData);
     },
     // Bind Event Listeners
     //
@@ -52,11 +52,11 @@ var pushApp = {
         pushApp.addStatus("Received Device Ready Event");
         pushApp.addStatus("calling setup push");
         pushApp.setupPush();
-        showStatusData();
+        pushApp.showStatusData();
     },
     setupPush: function() {
         console.log('calling push init');
-        this.addStatus("calling push init"); showStatusData();
+        tpushApphis.addStatus("calling push init"); pushApp.showStatusData();
         var push = PushNotification.init({
             "android": {
                 "senderID": "XXXXXXXX"
@@ -70,12 +70,12 @@ var pushApp = {
             "windows": {}
         });
         console.log('after init');
-        this.addStatus("After Init"); showStatusData();
+        pushApp.addStatus("After Init"); pushApp.showStatusData();
 
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
-            this.addStatus('registration event: ' + data.registrationId);
-            showStatusData();
+            pushApp.addStatus('registration event: ' + data.registrationId);
+            pushApp.showStatusData();
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
                 // Save new registration ID
@@ -95,12 +95,12 @@ var pushApp = {
 
         push.on('error', function(e) {
             console.log("push error = " + e.message);
-            pushApp.addStatus("push error = " + e.message); showStatusData();
+            pushApp.addStatus("push error = " + e.message); pushApp.showStatusData();
         });
 
         push.on('notification', function(data) {
             console.log('notification event');
-            pushApp.addStatus("notification event"); showStatusData();
+            pushApp.addStatus("notification event"); pushApp.showStatusData();
             navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
